@@ -1,3 +1,4 @@
+# pyinstaller --onefile -w --collect-data flet -n MDEE main.py
 import flet as ft
 import logic
 import threading
@@ -20,11 +21,12 @@ def main(page: ft.Page):
         global x_box,c1_box,close_flag1
         close_flag1 = False
         label = ft.Text(value="Введите линейное уравнение (вида ax+c=0)")
-        x_box = ft.TextField(width=100,height=30)
-        x_label = ft.Text(value="x+",height=30)
-        c1_box = ft.TextField(width=100,height=30)
-        c1_label = ft.Text(value="=0",height=30)
+        x_box = ft.TextField(width=100,height=35,text_align=ft.TextAlign.CENTER)
+        x_label = ft.Text(value="x+",height=35,size=20)
+        c1_box = ft.TextField(width=100,height=35,text_align=ft.TextAlign.CENTER)
+        c1_label = ft.Text(value="=0",height=35,size=20)
         ok_button = ft.ElevatedButton(text="Найти х",on_click=solve_lineal)
+        page.window_focused
         page.window_height = 170
         page.window_width = 400
         page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
@@ -59,13 +61,14 @@ def main(page: ft.Page):
         global a_box,b_box,c2_box,close_flag2
         close_flag2 = False
         label = ft.Text(value="Введите квадратное уравнение (вида ax^2+bx+c=0)",text_align="CENTER")
-        a_box = ft.TextField(width=100,height=30)
-        a_label = ft.Text(value="x^2+",height=30)
-        b_box = ft.TextField(width=100,height=30)
-        b_label = ft.Text(value="x+",height=30)
-        c2_box = ft.TextField(width=100,height=30)
-        c2_label = ft.Text(value="=0",height=30)
+        a_box = ft.TextField(width=100,height=35,text_align=ft.TextAlign.CENTER)
+        a_label = ft.Text(value="x^2+",height=35,size=20)
+        b_box = ft.TextField(width=100,height=35,text_align=ft.TextAlign.CENTER)
+        b_label = ft.Text(value="x+",height=35,size=20)
+        c2_box = ft.TextField(width=100,height=35,text_align=ft.TextAlign.CENTER)
+        c2_label = ft.Text(value="=0",height=35,size=20)
         ok_button = ft.ElevatedButton(text="Найти х1 и x2",on_click=solve_quad)
+        page.window_focused
         page.window_height = 170
         page.window_width = 500
         page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
@@ -84,7 +87,7 @@ def main(page: ft.Page):
     lineal_button = ft.ElevatedButton(text="Линейное уравнение",on_click=open_lineal_window)
     quad_button = ft.ElevatedButton(text="Квадратное уравнение",on_click=open_quad_window)
     result_label = ft.Text(value="")    
-    page.window_height = 150
+    page.window_height = 175
     page.window_width = 440
     page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
     page.add(

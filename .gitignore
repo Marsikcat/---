@@ -1,3 +1,6 @@
 /myenv
 /__pycache__
 /command_ui.py
+/build
+/dist
+/MDEE.spec

@@ -18,8 +18,15 @@ def main(page: ft.Page):
                     break
                 else:
                     pass
+        def open_dlg(e):
+            page.dialog = dlg
+            dlg.open = True
+            page.update()
+
         global x_box,c1_box,close_flag1
         close_flag1 = False
+        dlg = ft.AlertDialog(title = ft.Text('Выберите нужный тип уравнения, нажав на кнопку с типом уравнения.Введи коэффициенты для уравнения (только цифры, дробная часть вводится через точку;ограничения по float). Нажмите кнопку "ок" для рассчета корней уравнения\nКорни выведутся в главное окно с выбором типа уравнения в "результат"',size=10),on_dismiss=lambda e: print())
+        open_dialog = ft.IconButton(width=100,height=35,on_click=open_dlg,icon=ft.icons.QUESTION_MARK)
         label = ft.Text(value="Введите линейное уравнение (вида ax+c=0)")
         x_box = ft.TextField(width=100,height=35,text_align=ft.TextAlign.CENTER)
         x_label = ft.Text(value="x+",height=35,size=20)
@@ -27,11 +34,11 @@ def main(page: ft.Page):
         c1_label = ft.Text(value="=0",height=35,size=20)
         ok_button = ft.ElevatedButton(text="Найти х",on_click=solve_lineal)
         page.window_focused
-        page.window_height = 170
-        page.window_width = 400
+        page.window_height = 210
+        page.window_width = 435
         page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
         page.add(
-            label,
+            ft.Row([label,open_dialog]),
             ft.Row([x_box,x_label,c1_box,c1_label]),
             ok_button
             )
@@ -58,8 +65,15 @@ def main(page: ft.Page):
                     break
                 else:
                     pass
+        def open_dlg(e):
+            page.dialog = dlg
+            dlg.open = True
+            page.update()
+
         global a_box,b_box,c2_box,close_flag2
         close_flag2 = False
+        dlg = ft.AlertDialog(title = ft.Text('Выберите нужный тип уравнения, нажав на кнопку с типом уравнения.Введи коэффициенты для уравнения (только цифры, дробная часть вводится через точку;ограничения по float). Нажмите кнопку "ок" для рассчета корней уравнения\nКорни выведутся в главное окно с выбором типа уравнения в "результат"',size=10),on_dismiss=lambda e: print())
+        open_dialog = ft.IconButton(width=100,height=35,on_click=open_dlg,icon=ft.icons.QUESTION_MARK)
         label = ft.Text(value="Введите квадратное уравнение (вида ax^2+bx+c=0)",text_align="CENTER")
         a_box = ft.TextField(width=100,height=35,text_align=ft.TextAlign.CENTER)
         a_label = ft.Text(value="x^2+",height=35,size=20)
@@ -69,11 +83,11 @@ def main(page: ft.Page):
         c2_label = ft.Text(value="=0",height=35,size=20)
         ok_button = ft.ElevatedButton(text="Найти х1 и x2",on_click=solve_quad)
         page.window_focused
-        page.window_height = 170
+        page.window_height = 210
         page.window_width = 500
         page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
         page.add(
-            label,
+            ft.Row([label,open_dialog]),
             ft.Row([a_box,a_label,b_box,b_label,c2_box,c2_label]),
             ok_button
             )

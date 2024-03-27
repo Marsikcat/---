@@ -5,7 +5,7 @@ import threading
 
 def main(page: ft.Page):
     alph = "qwertyuiopasdfghjklzxcvbnm йцукенгшщзхъфывапролджэячсмитьбю"        
-    def lineal_window(page: ft.Page):
+    def lineal_window(page1: ft.Page):
         def solve_lineal(e):
             global close_flag1
             error_flag = False
@@ -23,19 +23,19 @@ def main(page: ft.Page):
                 close_flag1 = True
             else:
                 open_dlg(e)
-                
+
         def close_window(e):
             while True:
                 if close_flag1:
-                    page.window_close()
+                    page1.window_close()
                     break
                 else:
                     pass
         
         def open_dlg(e):
-            page.dialog = dlg
+            page1.dialog = dlg
             dlg.open = True
-            page.update()
+            page1.update()
 
         global x_box,c1_box,close_flag1
         close_flag1 = False
@@ -47,19 +47,19 @@ def main(page: ft.Page):
         c1_box = ft.TextField(width=100,height=35,text_align=ft.TextAlign.CENTER)
         c1_label = ft.Text(value="=0",height=35,size=20)
         ok_button = ft.ElevatedButton(text="Найти х",on_click=solve_lineal)
-        page.window_focused
-        page.window_height = 210
-        page.window_width = 435
-        page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
-        page.add(
+        page1.window_focused
+        page1.window_height = 210
+        page1.window_width = 435
+        page1.horizontal_alignment = ft.CrossAxisAlignment.CENTER
+        page1.add(
             ft.Row([label,open_dialog]),
             ft.Row([x_box,x_label,c1_box,c1_label]),
             ok_button
             )
-        page.update()
+        page1.update()
         threading.Thread(target=close_window(None)).start()        
 
-    def quad_window(page: ft.Page):
+    def quad_window(page2: ft.Page):
         def solve_quad(e):
             global close_flag2
             error_flag = False
@@ -91,15 +91,15 @@ def main(page: ft.Page):
         def close_window(e):
             while True:
                 if close_flag2:
-                    page.window_close()
+                    page2.window_close()
                     break
                 else:
                     pass
                 
         def open_dlg(e):
-            page.dialog = dlg
+            page2.dialog = dlg
             dlg.open = True
-            page.update()
+            page2.update()
 
         global a_box,b_box,c2_box,close_flag2
         close_flag2 = False
@@ -113,17 +113,18 @@ def main(page: ft.Page):
         c2_box = ft.TextField(width=100,height=35,text_align=ft.TextAlign.CENTER)
         c2_label = ft.Text(value="=0",height=35,size=20)
         ok_button = ft.ElevatedButton(text="Найти х1 и x2",on_click=solve_quad)
-        page.window_focused
-        page.window_height = 210
-        page.window_width = 500
-        page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
-        page.add(
+        page2.window_focused
+        page2.window_height = 210
+        page2.window_width = 500
+        page2.horizontal_alignment = ft.CrossAxisAlignment.CENTER
+        page2.add(
             ft.Row([label,open_dialog]),
             ft.Row([a_box,a_label,b_box,b_label,c2_box,c2_label]),
             ok_button
             )
-        page.update()
+        page2.update()
         threading.Thread(target=close_window(None)).start()
+
     def open_lineal_window(e):
         ft.app(target=lineal_window)
     def open_quad_window(e):

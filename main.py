@@ -4,13 +4,26 @@ import logic
 import threading
 
 def main(page: ft.Page):
-    def solve_lineal(e):
-        global x_box,c1_box,close_flag1
-        result_label.value = (f'Результат х={logic.calc_lineal(x=float(x_box.value),c=float(c1_box.value))}')
-        page.update()
-        close_flag1 = True
-        
+    alph = "qwertyuiopasdfghjklzxcvbnm йцукенгшщзхъфывапролджэячсмитьбю"        
     def lineal_window(page: ft.Page):
+        def solve_lineal(e):
+            global close_flag1
+            error_flag = False
+            for x in range(len(x_box.value)):
+                if x_box.value[x] in alph:
+                    error_flag = True
+                    break
+            for y in range(len(c1_box.value)):
+                if c1_box.value[y] in alph:
+                    error_flag = True
+                    break
+            if not(error_flag):
+                result_label.value = (f'Результат х={logic.calc_lineal(x=float(x_box.value),c=float(c1_box.value))}')
+                page.update()
+                close_flag1 = True
+            else:
+                open_dlg(e)
+                
         def close_window(e):
             while True:
                 if close_flag1:
@@ -18,6 +31,7 @@ def main(page: ft.Page):
                     break
                 else:
                     pass
+        
         def open_dlg(e):
             page.dialog = dlg
             dlg.open = True
@@ -45,19 +59,35 @@ def main(page: ft.Page):
         page.update()
         threading.Thread(target=close_window(None)).start()        
 
-    def solve_quad(e):
-        global a_box,b_box,c2_box,close_flag2
-        results = logic.calc_quad(a=float(a_box.value),b=float(b_box.value),c=float(c2_box.value))
-        if results == None:
-            result_label.value = (f"У вашего уравнения нет действительных корней, так как его дискриминант меньше 0")
-        elif len(results) == 2:
-            result_label.value = (f"Корнями уравнения являются x1={results[0]:.3f}; x2={results[1]:.3f}")
-        elif len(results) == 1:
-            result_label.value = (f"Корнем уравнения является x={results[0]:.3f}")
-        page.update()
-        close_flag2 =True
-
     def quad_window(page: ft.Page):
+        def solve_quad(e):
+            global close_flag2
+            error_flag = False
+            for x in range(len(a_box.value)):
+                if a_box.value[x] in alph:
+                    error_flag = True
+                    break
+            for y in range(len(b_box.value)):
+                if b_box.value[y] in alph:
+                    error_flag = True
+                    break
+            for z in range(len(c2_box.value)):
+                if c2_box.value[y] in alph:
+                    error_flag = True
+                    break
+            if not(error_flag):
+                results = logic.calc_quad(a=float(a_box.value),b=float(b_box.value),c=float(c2_box.value))
+                if results == None:
+                    result_label.value = (f"У вашего уравнения нет действительных корней, так как его дискриминант меньше 0")
+                elif len(results) == 2:
+                    result_label.value = (f"Корнями уравнения являются x1={results[0]:.3f}; x2={results[1]:.3f}")
+                elif len(results) == 1:
+                    result_label.value = (f"Корнем уравнения является x={results[0]:.3f}")
+                page.update()
+                close_flag2 =True
+            else:
+                open_dlg(e)
+
         def close_window(e):
             while True:
                 if close_flag2:
@@ -65,6 +95,7 @@ def main(page: ft.Page):
                     break
                 else:
                     pass
+                
         def open_dlg(e):
             page.dialog = dlg
             dlg.open = True

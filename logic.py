@@ -5,6 +5,7 @@ def calc_lineal(x:float,c:float):
     result_lineal = (-1*c)/x
     return result_lineal
 
+
 def calc_quad(a:float,b:float,c:float):
     '''Функция для поиска корней квадратных уравнений. Возвращает list с корнями'''
     discriminant = b**2 - 4*a*c
@@ -18,3 +19,4 @@ def calc_quad(a:float,b:float,c:float):
     else:
         result_quad = None
     return result_quad
+    

@@ -80,13 +80,14 @@ def main(page: ft.Page):
 
     def quad_window(page2: ft.Page):
         '''Окно для ввода коэффициентов квадратного уравнения'''
+        
         def solve_quad(e):
             '''Проверка вводимых значений и вычисление результата квадратного уравнения'''
             global close_flag2
             error_flag = False
             if  not(a_box.value == '' or b_box.value == '' or c2_box.value == ''): 
                 for x in range(len(a_box.value)):
-                    if a_box.value[x] in alph or a_box == "0":
+                    if a_box.value[x] in alph or a_box.value == "0":
                         error_flag = True
                         break
                 for y in range(len(b_box.value)):

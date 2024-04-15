@@ -11,6 +11,10 @@ class TestCalcFunctions(unittest.TestCase):
     def test_calc_lineal_invalid_input(self):
         with self.assertRaises(ZeroDivisionError):
             calc_lineal(0, 0)
+            
+    def test_calc_lineal_type_check(self):
+        with self.assertRaises(TypeError):
+            calc_lineal("a", (123,"мяу"))  
 
     def test_calc_quad(self):
         # Один корень
@@ -23,3 +27,7 @@ class TestCalcFunctions(unittest.TestCase):
     def test_calc_quad_invalid_input(self):
         with self.assertRaises(ZeroDivisionError):
             calc_quad(0, 0, 0)
+
+    def test_calc_quad_type_check(self):
+        with self.assertRaises(TypeError):
+            calc_quad("a", ["bruh",12], (1,23,4))

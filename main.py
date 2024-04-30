@@ -5,7 +5,7 @@ import threading
 
 def main(page: ft.Page):
     '''Главное окно'''
-    alph = "qwertyuiopasdfghjklzxcvbnm йцукенгшщзхъфывапролджэячсмитьбю!@#$%^&*()_+=-';:[/,<>?`~]" #словарь исключающих символов
+    alph = "qwertyuiopasdfghjklzxcvbnm йцукенгшщзхъфывапролджэячсмитьбю!@#$%^&*()_+=';:[/,<>?`~]" #словарь исключающих символов
     limits = [int(x) for x in range(-10000,10001)] #пределы вводимых чисел        
     def lineal_window(page1: ft.Page):
         '''Окно для ввода коэффициентов линейного уравнения'''
@@ -25,11 +25,15 @@ def main(page: ft.Page):
                         break
                 if not(error_flag):
                     if int(float(x_box.value)) in limits and int(float(c1_box.value)) in limits:
-                        result_label.value = (f'Результат х={logic.calc_lineal(x=float(x_box.value),c=float(c1_box.value))}')
+                        result_label.value = (f'Результат: х={logic.calc_lineal(x=float(x_box.value),c=float(c1_box.value))}')
                         page.update()
                         close_flag1 = True
                     else:
                         open_dlg(e)
+                elif x_box.value == "0":
+                    result_label.value = (f"Результат: корней нет(∅)")
+                    page.update()
+                    close_flag1 = True
                 else:
                     open_dlg(e)
             else:

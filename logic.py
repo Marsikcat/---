@@ -1,13 +1,13 @@
 from math import sqrt
 
 def calc_lineal(x:float,c:float):
-    '''Функция для поиска корней линейных уравнений. Возвращает float'''
+    '''Функция для поиска корней линейных уравнений. Принимает float или int. Возвращает float'''
     result_lineal = (-1*c)/x
     return result_lineal
 
 
 def calc_quad(a:float,b:float,c:float):
-    '''Функция для поиска корней квадратных уравнений. Возвращает list с корнями'''
+    '''Функция для поиска корней квадратных уравнений. Принимает float или int. Возвращает list с корнями или None'''
     discriminant = b**2 - 4*a*c
     if discriminant > 0:
         x1 = (-b+sqrt(discriminant))/(2*a)
@@ -19,4 +19,3 @@ def calc_quad(a:float,b:float,c:float):
     else:
         result_quad = None
     return result_quad
-    
